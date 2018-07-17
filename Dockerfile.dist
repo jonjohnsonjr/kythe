@@ -1,0 +1,6 @@
+# Build the public resources for the web UI
+FROM openjdk as dist
+COPY . /src
+WORKDIR /src/kythe/web/ui
+RUN apt-get update && apt-get install -y wget
+RUN /src/third_party/leiningen/lein cljsbuild once prod
